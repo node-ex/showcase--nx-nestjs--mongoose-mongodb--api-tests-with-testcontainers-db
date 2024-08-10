@@ -1,5 +1,6 @@
-import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { type HydratedDocument, SchemaTypes } from 'mongoose';
+import { type HydratedDocument, Schema } from 'mongoose';
+
+export const EVENT_SCHEMA_TOKEN = 'Event';
 
 export interface Event {
   type: string;
@@ -7,21 +8,14 @@ export interface Event {
   payload: Record<string, any>;
 }
 
-@Schema({
-  collection: 'events',
-})
-export class EventRawDocument implements Event {
-  @Prop()
-  type!: string;
-
-  @Prop({ index: true })
-  name!: string;
-
-  @Prop({ type: SchemaTypes.Mixed })
-  payload!: Record<string, any>;
-}
-
-export const EventSchema = SchemaFactory.createForClass(EventRawDocument);
+export const EventSchema = new Schema<Event>(
+  {
+    type: { type: String, required: true },
+    name: { type: String, required: true },
+    payload: { type: Schema.Types.Mixed, required: true },
+  },
+  { collection: 'events' },
+);
 // 1 -> Ascending, -1 -> Descending
 EventSchema.index({ name: 1, type: -1 });
 

@@ -3,15 +3,15 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import {
   Event,
+  EVENT_SCHEMA_TOKEN,
   EventDocument,
-  EventRawDocument,
 } from '../schemas/event.schema';
 import { CreateEventDto } from '../dtos/create-event.dto';
 
 @Injectable()
 export class EventService {
   constructor(
-    @InjectModel(EventRawDocument.name) private eventModel: Model<Event>,
+    @InjectModel(EVENT_SCHEMA_TOKEN) private eventModel: Model<Event>,
   ) {}
 
   async create(createEventDto: CreateEventDto): Promise<EventDocument> {
