@@ -1,1 +1,32 @@
 GET http://localhost:3000/api/hello-world
+
+###
+
+POST http://localhost:3000/api/mongoose/coffee
+Content-Type: application/json
+
+{
+    "name": "mock-coffee",
+    "brand": "mock-brand",
+    "recommendations": 0,
+    "flavors": []
+}
+
+###
+
+GET http://localhost:3000/api/mongoose/coffee
+
+###
+
+POST http://localhost:3000/api/mongoose/event
+Content-Type: application/json
+
+{
+    "type": "mock-type",
+    "name": "mock-name",
+    "payload": { "mock": "payload" }
+}
+
+###
+
+GET http://localhost:3000/api/mongoose/event

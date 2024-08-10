@@ -2,6 +2,7 @@ import { Module } from '@nestjs/common';
 
 import { ConfigModule } from '@nestjs/config';
 import { HelloWorldModule } from '../hello-world/hello-world.module';
+import { MongooseModule } from '../mongoose/mongoose.module';
 
 @Module({
   imports: [
@@ -12,6 +13,7 @@ import { HelloWorldModule } from '../hello-world/hello-world.module';
       // cache: true,
     }),
     HelloWorldModule,
+    MongooseModule,
   ],
 })
 export class CoreModule {}
