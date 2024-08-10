@@ -1,0 +1,44 @@
+services:
+    mongo:
+        image: mongo:7.0.12-jammy
+        container_name: showcase--mongo
+        # user: mongodb
+        volumes:
+            - type: volume
+              source: showcase--mongo--data
+              target: /data/db
+        ports:
+            - host_ip: 0.0.0.0
+              # NOTE: Port 27018 is used to avoid conflict with local MongoDB installation
+              published: 27018 # host
+              target: 27017 # container
+              protocol: tcp
+              mode: host
+        healthcheck:
+            test: ["CMD-SHELL", "mongosh --eval 'db.adminCommand(\"ping\")'"]
+            interval: 5s
+
+    # DB connection URL:
+    # mongodb://showcase--mongo:27017
+    # Browser URL:
+    # http://localhost:8081
+    mongo-express:
+      image: mongo-express
+      container_name: showcase--mongo-express
+      ports:
+        - host_ip: 0.0.0.0
+          published: 8081 # host
+          target: 8081 # container
+          protocol: tcp
+          mode: host
+      environment:
+        ME_CONFIG_MONGODB_URL: mongodb://showcase--mongo:27017
+        ME_CONFIG_BASICAUTH: false
+
+volumes:
+    showcase--mongo--data:
+        name: showcase--mongo--data
+
+networks:
+    default:
+        name: showcase--network--default
