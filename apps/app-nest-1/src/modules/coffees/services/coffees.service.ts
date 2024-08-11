@@ -6,7 +6,7 @@ import * as mongoose from 'mongoose';
 import { CreateCoffeeDto } from '../dtos/create-coffee.dto';
 
 @Injectable()
-export class CoffeeService {
+export class CoffeesService {
   constructor(
     @InjectModel(CoffeeRawDocument.name)
     private coffeeModel: Model<CoffeeRawDocument>,
@@ -21,8 +21,10 @@ export class CoffeeService {
   }
 
   async findAll(): Promise<CoffeeDocument[]> {
+    /* How to perform raw queries with Mongoose */
     // return this.coffeeModel.collection.find().toArray();
     // return this.connection.db.collection('coffees').find().toArray();
+
     return this.coffeeModel.find().exec();
   }
 }

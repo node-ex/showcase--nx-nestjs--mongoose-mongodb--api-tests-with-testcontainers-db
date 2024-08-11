@@ -1,21 +1,21 @@
 import { Body, Controller, Get, Post } from '@nestjs/common';
-import { EventService } from '../services/event.service';
+import { EventsService } from '../services/events.service';
 import { EventDocument } from '../schemas/event.schema';
 import { CreateEventDto } from '../dtos/create-event.dto';
 
 @Controller({
-  path: 'mongoose/event',
+  path: 'events',
 })
-export class EventController {
-  constructor(private readonly eventService: EventService) {}
+export class EventsController {
+  constructor(private readonly eventsService: EventsService) {}
 
   @Post()
   create(@Body() createEventDto: CreateEventDto): Promise<EventDocument> {
-    return this.eventService.create(createEventDto);
+    return this.eventsService.create(createEventDto);
   }
 
   @Get()
   findAll(): Promise<EventDocument[]> {
-    return this.eventService.findAll();
+    return this.eventsService.findAll();
   }
 }

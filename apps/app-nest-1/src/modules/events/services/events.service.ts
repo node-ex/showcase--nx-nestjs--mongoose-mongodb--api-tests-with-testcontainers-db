@@ -9,7 +9,7 @@ import {
 import { CreateEventDto } from '../dtos/create-event.dto';
 
 @Injectable()
-export class EventService {
+export class EventsService {
   constructor(
     @InjectModel(EVENT_SCHEMA_TOKEN) private eventModel: Model<Event>,
   ) {}

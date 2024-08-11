@@ -2,7 +2,7 @@ GET http://localhost:3000/api/hello-world
 
 ###
 
-POST http://localhost:3000/api/mongoose/coffee
+POST http://localhost:3000/api/coffees
 Content-Type: application/json
 
 {
@@ -14,11 +14,11 @@ Content-Type: application/json
 
 ###
 
-GET http://localhost:3000/api/mongoose/coffee
+GET http://localhost:3000/api/coffees
 
 ###
 
-POST http://localhost:3000/api/mongoose/event
+POST http://localhost:3000/api/events
 Content-Type: application/json
 
 {
@@ -29,4 +29,4 @@ Content-Type: application/json
 
 ###
 
-GET http://localhost:3000/api/mongoose/event
+GET http://localhost:3000/api/events

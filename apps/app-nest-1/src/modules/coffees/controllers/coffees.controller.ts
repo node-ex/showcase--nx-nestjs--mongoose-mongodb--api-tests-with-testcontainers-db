@@ -1,21 +1,21 @@
-import { CoffeeService } from '../services/coffee.service';
+import { CoffeesService } from '../services/coffees.service';
 import { Body, Controller, Get, Post } from '@nestjs/common';
 import { CoffeeDocument } from '../schemas/coffee.schema';
 import { CreateCoffeeDto } from '../dtos/create-coffee.dto';
 
 @Controller({
-  path: 'mongoose/coffee',
+  path: 'coffees',
 })
-export class CoffeeController {
-  constructor(private readonly coffeeService: CoffeeService) {}
+export class CoffeesController {
+  constructor(private readonly coffeesService: CoffeesService) {}
 
   @Post()
   create(@Body() createCoffeeDto: CreateCoffeeDto): Promise<CoffeeDocument> {
-    return this.coffeeService.create(createCoffeeDto);
+    return this.coffeesService.create(createCoffeeDto);
   }
 
   @Get()
   findAll(): Promise<CoffeeDocument[]> {
-    return this.coffeeService.findAll();
+    return this.coffeesService.findAll();
   }
 }

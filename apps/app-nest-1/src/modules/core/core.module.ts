@@ -3,6 +3,8 @@ import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { HelloWorldModule } from '../hello-world/hello-world.module';
 import { MongooseModule } from '../mongoose/mongoose.module';
+import { CoffeesModule } from '../coffees/coffees.module';
+import { EventsModule } from '../events/events.module';
 
 @Module({
   imports: [
@@ -14,6 +16,8 @@ import { MongooseModule } from '../mongoose/mongoose.module';
     }),
     HelloWorldModule,
     MongooseModule,
+    CoffeesModule,
+    EventsModule,
   ],
 })
 export class CoreModule {}
